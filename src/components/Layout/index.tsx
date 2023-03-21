@@ -4,12 +4,8 @@ import { Layout as AntdLayout } from "antd";
 import Menu from "../menu";
 import Home from "../Home";
 import Main from "../Main";
-
-const layoutStyle = {
-    minHeight: "100vh",
-    width: "100%",
-    backgroundColor: "#fff",
-};
+import style from "./style.module.scss";
+// import style from "./style.scss?inline";
 
 const headerStyle = {
     color: "#fff",
@@ -35,8 +31,8 @@ const Layout: React.FC = () => {
     const { Content, Sider, Header, Footer } = AntdLayout;
 
     return (
-        <AntdLayout>
-            <Sider style={siderStyle}>
+        <AntdLayout className={style.container}>
+            <Sider className={style.slider}>
                 <Menu />
             </Sider>
             <AntdLayout>
