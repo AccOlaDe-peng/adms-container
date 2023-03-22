@@ -30,9 +30,9 @@ const NavMenu: React.FC = () => {
     const handleNavChange = (itemObj: MenuInfo) => {
         const { key: path } = itemObj;
         if (path === "dashboard") {
-            navigate(`${path}/232?id=123123`);
+            navigate(`${path}`);
         } else if (path === "about") {
-            navigate(`${path}/2`);
+            navigate(`${path}`);
         } else {
             navigate(`${path}`);
         }
