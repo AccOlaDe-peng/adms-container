@@ -1,8 +1,8 @@
-import { create } from "zustand";
+import { StoreApi, UseBoundStore, create } from "zustand";
 
-const useLoading = create((set) => ({
-    loading: false,
-    setLoading: (loading: boolean) => set(() => ({ loading })),
+const useLoading: UseBoundStore<StoreApi<unknown>> = create((set) => ({
+	loading: false,
+	setLoading: (loading: boolean) => set(() => ({ loading })),
 }));
 
 export default useLoading;
