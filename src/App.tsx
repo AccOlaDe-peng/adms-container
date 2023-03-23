@@ -1,19 +1,22 @@
-import React from "react";
-import { Route, Routes } from "react-router-dom";
-import Layout from "./components/Layout";
-import Login from "./pages/user/Login";
-import Test from "./pages/test";
+import React, { Suspense } from "react";
+import Loading from "./components/Loading";
+import { RouterProvider } from "react-router-dom";
 
 const App: React.FC = () => {
     return (
-        <div style={{ width: "100%" }}>
-            <Routes>
-                <Route path="*" element={<Layout />} />
-                <Route path="/user/login" element={<Login />} />
-                <Route path="/test" element={<Test />} />
-            </Routes>
-        </div>
+        <Suspense fallback={<Loading />}>
+            <RouterProvider router={router} />
+        </Suspense>
+        // <div style={{ width: "100%" }}>
+        //     <Routes>
+        //         <Route path="*" element={<Layout />} />
+        //         <Route path="/user/login" element={<Login />} />
+        //         <Route path="/test" element={<Test />} />
+        //     </Routes>
+        // </div>
     );
 };
 
 export default App;
+
+//获取主题颜色

@@ -1,22 +1,24 @@
 import React from "react";
 import { ConfigProvider } from "antd";
-import useTheme from "../store/useTheme";
+import useLayoutConfig from "../store/useLayoutConfig";
 
 export function ThemeColorConfigProvider({
-	children,
+    children,
 }: {
-	children: React.ReactNode;
+    children: React.ReactNode;
 }) {
-	const themeColor = useTheme((state: any) => state.layoutConfig.themeColor);
-	return (
-		<ConfigProvider
-			theme={{
-				token: {
-					colorPrimary: themeColor,
-				},
-			}}
-		>
-			{children}
-		</ConfigProvider>
-	);
+    const themeColor = useLayoutConfig(
+        (state: any) => state.layoutConfig.themeColor
+    );
+    return (
+        <ConfigProvider
+            theme={{
+                token: {
+                    colorPrimary: themeColor,
+                },
+            }}
+        >
+            {children}
+        </ConfigProvider>
+    );
 }

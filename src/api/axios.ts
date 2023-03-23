@@ -100,7 +100,7 @@ function httpErrorStatusHandle(error: any) {
 function request(
     url: string,
     reqConfig: reqConfigType,
-    customOptions: customOptionsType
+    customOptions?: customOptionsType
 ) {
     // 自定义配置
     const custom_options = Object.assign(
