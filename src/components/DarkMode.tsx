@@ -5,7 +5,7 @@ import useLayoutConfig from "@/store/useLayoutConfig";
 export function DarkModeSwitch() {
     const { isDarkMode, setDarkMode } = useLayoutConfig((state: any) => ({
         isDarkMode: state.layoutConfig.isDarkMode,
-        setDarkMode: state.layoutConfig.setIsDarkMode,
+        setDarkMode: state.setIsDarkMode,
     }));
     return (
         <Switch

@@ -53,7 +53,7 @@ const LayoutBreadcrumb = () => {
 function useBreadcrumbFormRoutes({ routes }: { routes: IRoute[] }) {
     const location = useLocation();
     const setBreadcrumb = useLayoutConfig(
-        (state: any) => state.layoutConfig.setBreadcrumb
+        (state: any) => state.setBreadcrumb
     );
     useEffect(() => {
         const currentRouteMatch = matchRoutes(routes, location);
@@ -63,18 +63,18 @@ function useBreadcrumbFormRoutes({ routes }: { routes: IRoute[] }) {
                 routes,
                 `/${currentRouteConfig?.parentKey}`
             );
-            const breadcrumb = mapRouteMatchToBreadcrmb(
+            const breadcrumb = mapRouteMatchToBreadcrumb(
                 parentRouteMatch!.concat(currentRouteMatch!.at(-1)!)
             );
             setBreadcrumb(breadcrumb);
         } else {
-            const breadcrumb = mapRouteMatchToBreadcrmb(currentRouteMatch!);
+            const breadcrumb = mapRouteMatchToBreadcrumb(currentRouteMatch!);
             setBreadcrumb(breadcrumb);
         }
     }, [location]);
 }
 
-function mapRouteMatchToBreadcrmb(
+function mapRouteMatchToBreadcrumb(
     routeMatch: Array<RouteMatch>
 ): BreadcrumbType {
     return routeMatch?.map((item, index, arr) => {

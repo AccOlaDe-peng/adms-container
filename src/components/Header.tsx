@@ -15,7 +15,7 @@ const LayoutHeader: React.FC = () => {
         (state: any) => ({
             collapsed: state.layoutConfig.collapsed,
             isDarkMode: state.layoutConfig.isDarkMode,
-            setCollapsed: state.layoutConfig.setCollapsed,
+            setCollapsed: state.setCollapsed,
         })
     );
     return (
