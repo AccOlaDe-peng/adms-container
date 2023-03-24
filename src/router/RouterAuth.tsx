@@ -8,23 +8,17 @@ import { fetchIsTokenValid } from "@/api/modules/user";
  * 路由守卫
  * @description 验证用户token是否在有效期。
  */
-const RouteAuth = ({ children }: { children: JSX.Element }) => {
+const RouterAuth = ({ children }: { children: JSX.Element }) => {
     const location = useLocation();
     const token = useUserConfig((state: any) => state.userConfig.token);
     // ToDO: 未完成
-    const { data: tokenIsValid, loading } = useRequest(
-        fetchIsTokenValid
-        //     {
-        //     refreshDeps: [location],
-        // }
-    );
-    console.log(loading, location);
+    const { data: tokenIsValid, loading } = useRequest(fetchIsTokenValid, {
+        refreshDeps: [location],
+    });
 
     if (loading) {
         return <RouteAuthLoading />;
     }
-
-    console.log(token, tokenIsValid);
 
     if (!token || !tokenIsValid) {
         return <Navigate to="/login" state={location} replace />;
@@ -43,4 +37,4 @@ function RouteAuthLoading() {
     );
 }
 
-export default RouteAuth;
+export default RouterAuth;
