@@ -8,11 +8,11 @@ import "@/mock";
 import "./index.scss";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-    <DarkModeConfigProvider>
-        <ThemeColorConfigProvider>
-            <ConfigProvider locale={zhCN} input={{ autoComplete: "off" }}>
-                <App />
-            </ConfigProvider>
-        </ThemeColorConfigProvider>
-    </DarkModeConfigProvider>
+	<DarkModeConfigProvider>
+		<ThemeColorConfigProvider>
+			<ConfigProvider locale={zhCN}>
+				<App />
+			</ConfigProvider>
+		</ThemeColorConfigProvider>
+	</DarkModeConfigProvider>
 );

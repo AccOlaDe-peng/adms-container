@@ -9,32 +9,34 @@ import { fetchIsTokenValid } from "@/api/modules/user";
  * @description 验证用户token是否在有效期。
  */
 const RouterAuth = ({ children }: { children: JSX.Element }) => {
-    const location = useLocation();
-    const token = useUserConfig((state: any) => state.userConfig.token);
-    // ToDO: 未完成
-    const { data: tokenIsValid, loading } = useRequest(fetchIsTokenValid, {
-        refreshDeps: [location],
-    });
+	const location = useLocation();
+	const token = useUserConfig((state: any) => state.userConfig.token);
+	// ToDO: 未完成
+	const { data: tokenIsValid, loading } = useRequest(fetchIsTokenValid, {
+		refreshDeps: [location],
+	});
 
-    if (loading) {
-        return <RouteAuthLoading />;
-    }
+	console.log(loading, tokenIsValid);
 
-    if (!token || !tokenIsValid) {
-        return <Navigate to="/login" state={location} replace />;
-    }
+	if (loading) {
+		return <RouteAuthLoading />;
+	}
 
-    return children;
+	if (!token || !tokenIsValid) {
+		return <Navigate to="/login" state={location} replace />;
+	}
+
+	return children;
 };
 
 function RouteAuthLoading() {
-    return (
-        <Row justify="center" align="middle" style={{ height: "100%" }}>
-            <Col>
-                <Spin tip="用户认证中..." />
-            </Col>
-        </Row>
-    );
+	return (
+		<Row justify="center" align="middle" style={{ height: "100%" }}>
+			<Col>
+				<Spin tip="用户认证中..." />
+			</Col>
+		</Row>
+	);
 }
 
 export default RouterAuth;
