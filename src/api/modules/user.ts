@@ -13,7 +13,7 @@ export const login = (userEntity: API.LoginParams) => {
  * @returns
  */
 export const fetchIsTokenValid = () => {
-    return request("/User/Auth", {
-        method: "get",
+    return request("/auth", {
+        method: "GET",
     });
 };

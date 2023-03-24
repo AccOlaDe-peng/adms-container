@@ -12,13 +12,19 @@ const RouteAuth = ({ children }: { children: JSX.Element }) => {
     const location = useLocation();
     const token = useUserConfig((state: any) => state.userConfig.token);
     // ToDO: 未完成
-    const { data: tokenIsValid, loading } = useRequest(fetchIsTokenValid, {
-        refreshDeps: [location],
-    });
+    const { data: tokenIsValid, loading } = useRequest(
+        fetchIsTokenValid
+        //     {
+        //     refreshDeps: [location],
+        // }
+    );
+    console.log(loading, location);
 
     if (loading) {
         return <RouteAuthLoading />;
     }
+
+    console.log(token, tokenIsValid);
 
     if (!token || !tokenIsValid) {
         return <Navigate to="/login" state={location} replace />;

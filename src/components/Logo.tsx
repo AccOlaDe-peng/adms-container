@@ -6,7 +6,7 @@ const Logo = () => {
     );
     return (
         <div className="logo">
-            <img style={{ width: 43 }} src="@/assets/images/react.svg" />
+            <img style={{ width: 43 }} src="/src/assets/images/react.svg" />
             <div
                 style={{
                     width: !collapsed ? 141 : 0,

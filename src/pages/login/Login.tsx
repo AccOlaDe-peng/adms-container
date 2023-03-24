@@ -1,5 +1,5 @@
 import { FC, useState, createElement, ReactNode } from "react";
-import { Space, Form, theme, message } from "antd";
+import { Space, Form, theme, message, Button } from "antd";
 import type { FormItemProps } from "antd";
 import { useLocation, useNavigate } from "react-router-dom";
 import classnames from "classnames";
@@ -8,6 +8,7 @@ import { LoginForm } from "@ant-design/pro-components";
 import LoginLogo from "./LoginLogo";
 import styles from "./login.module.scss";
 import useUserConfig from "@/store/useUser";
+import axios from "axios";
 
 const FormItem = Form.Item;
 const { useToken } = theme;
@@ -43,6 +44,7 @@ export default function Login() {
             username: values.username,
             password: values.password,
         });
+        console.log(prev_page_location);
         message.success("登录成功");
         navigate(
             prev_page_location
@@ -168,3 +170,5 @@ function Actions() {
         </Space>
     );
 }
+
+//获取当前时间

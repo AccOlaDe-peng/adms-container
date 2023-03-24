@@ -9,6 +9,10 @@ export interface layoutConfigType {
     themeColor: string;
 }
 
+interface useLayoutStateType {
+    layoutConfig: layoutConfigType;
+}
+
 const useLayoutConfig: UseBoundStore<StoreApi<any>> = create(
     persist(
         (set) => ({
@@ -18,26 +22,35 @@ const useLayoutConfig: UseBoundStore<StoreApi<any>> = create(
                 isDarkMode: false,
                 themeColor: "#1677ff",
             },
-            setAllLayoutConfig: (config: layoutConfigType) => set(() => config),
+            setAllLayoutConfig: (config: layoutConfigType) =>
+                set(() => ({ layoutConfig: config })),
             setBreadcrumb: (breadcrumb: BreadcrumbType) =>
-                set((state: layoutConfigType) => ({
-                    ...state,
-                    breadcrumb,
+                set((state: useLayoutStateType) => ({
+                    layoutConfig: {
+                        ...state.layoutConfig,
+                        breadcrumb,
+                    },
                 })),
             setCollapsed: (collapsed: boolean) =>
-                set((state: layoutConfigType) => ({
-                    ...state,
-                    collapsed,
+                set((state: useLayoutStateType) => ({
+                    layoutConfig: {
+                        ...state.layoutConfig,
+                        collapsed,
+                    },
                 })),
             setIsDarkMode: (isDarkMode: boolean) =>
-                set((state: layoutConfigType) => ({
-                    ...state,
-                    isDarkMode,
+                set((state: useLayoutStateType) => ({
+                    layoutConfig: {
+                        ...state.layoutConfig,
+                        isDarkMode,
+                    },
                 })),
             setThemeColor: (themeColor: string) =>
-                set((state: layoutConfigType) => ({
-                    ...state,
-                    themeColor,
+                set((state: useLayoutStateType) => ({
+                    layoutConfig: {
+                        ...state.layoutConfig,
+                        themeColor,
+                    },
                 })),
         }),
         {

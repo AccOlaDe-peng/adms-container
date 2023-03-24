@@ -6,7 +6,7 @@ const Logo: React.FC = () => (
             alignItems: "center",
         }}
     >
-        <img style={{ width: 48 }} src={`@/assets/images/react.svg`} />
+        <img style={{ width: 48 }} src={`/src/assets/images/react.svg`} />
         <h1 className="logo_text">adms</h1>
     </div>
 );
