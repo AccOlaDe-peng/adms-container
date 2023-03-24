@@ -1,8 +1,8 @@
 import { Navigate, useLocation } from "react-router-dom";
 import { useRequest } from "ahooks";
 import { Spin, Row, Col } from "antd";
-import useUserConfig from "../store/useUser";
-import { fetchIsTokenValid } from "../api/modules/user";
+import useUserConfig from "@/store/useUser";
+import { fetchIsTokenValid } from "@/api/modules/user";
 
 /**
  * 路由守卫

@@ -41,7 +41,7 @@ const useLayoutConfig: UseBoundStore<StoreApi<any>> = create(
                 })),
         }),
         {
-            name: "persist-layoutConfig",
+            name: "LAYOUT_CONFIG",
         }
     )
 );

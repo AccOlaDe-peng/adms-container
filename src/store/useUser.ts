@@ -36,9 +36,17 @@ const useUserConfig: UseBoundStore<StoreApi<any>> = create(
             },
             setLogout: () =>
                 set((state: UserConfigType) => ({ ...state, isLogin: false })),
+            clear: () => {
+                return set((state: UserConfigType) => ({
+                    menuItems: [],
+                    userInfo: {},
+                    token: undefined,
+                    isLogin: false,
+                }));
+            },
         }),
         {
-            name: "userConfig",
+            name: "USER_CONFIG",
         }
     )
 );

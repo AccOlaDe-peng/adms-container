@@ -12,9 +12,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <DarkModeConfigProvider>
         <ThemeColorConfigProvider>
             <ConfigProvider locale={zhCN} input={{ autoComplete: "off" }}>
-                <BrowserRouter>
-                    <App />
-                </BrowserRouter>
+                <App />
             </ConfigProvider>
         </ThemeColorConfigProvider>
     </DarkModeConfigProvider>

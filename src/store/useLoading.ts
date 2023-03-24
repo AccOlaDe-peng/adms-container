@@ -7,7 +7,7 @@ const useLoading: UseBoundStore<StoreApi<any>> = create(
             loading: false,
             setLoading: (loading: boolean) => set(() => ({ loading })),
         }),
-        { name: "persist-loading" }
+        { name: "loading" }
     )
 );
 

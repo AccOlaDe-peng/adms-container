@@ -1,7 +1,7 @@
 import { lazy } from "react";
 import type { RouteObject } from "react-router-dom";
 import type { IRoute, MenuRoute } from "./routes";
-import RouteAuth from "./RouteAuth";
+import RouterAuth from "./RouterAuth";
 
 /**
  * 从路由配置中获取具有Layout的routes
@@ -59,9 +59,9 @@ export const generateRoutes = function (routes: IRoute[]) {
                     import(/* @vite-ignore */ `../pages/${route.componentPath}`)
             );
             routeItem.element = route.auth ? (
-                <RouteAuth>
+                <RouterAuth>
                     <PageComponent />
-                </RouteAuth>
+                </RouterAuth>
             ) : (
                 <PageComponent />
             );

@@ -1,16 +1,34 @@
 import { useEffect } from "react";
-import useLayoutConfig from "../store/useLayoutConfig";
-import { ConfigProvider, theme } from "antd";
-const { darkAlgorithm } = theme;
+import { ConfigProvider, Switch, theme } from "antd";
+import useLayoutConfig from "@/store/useLayoutConfig";
+
+export function DarkModeSwitch() {
+    const { isDarkMode, setDarkMode } = useLayoutConfig((state: any) => ({
+        isDarkMode: state.layoutConfig.isDarkMode,
+        setDarkMode: state.layoutConfig.setIsDarkMode,
+    }));
+    return (
+        <Switch
+            // style={{ verticalAlign: 'unset' }}
+            checked={isDarkMode}
+            checkedChildren="🌜"
+            unCheckedChildren="🌞"
+            onChange={(checked) => setDarkMode(checked)}
+        />
+    );
+}
 
 export function DarkModeConfigProvider({
     children,
 }: {
     children: React.ReactNode;
 }) {
+    const { darkAlgorithm } = theme;
+
     const isDarkMode = useLayoutConfig(
         (state: any) => state.layoutConfig.isDarkMode
     );
+
     useEffect(() => {
         document.body.className = isDarkMode ? "dark" : "";
     }, [isDarkMode]);

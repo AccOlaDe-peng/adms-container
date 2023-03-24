@@ -1,7 +1,7 @@
 import React from "react";
 import { List, Avatar, theme } from "antd";
 import classNames from "classnames";
-import styles from "./NoticeList.module.css";
+import styles from "./NoticeList.module.scss";
 const { useToken } = theme;
 
 export type NoticeIconTabProps = {

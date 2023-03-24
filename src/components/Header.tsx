@@ -1,6 +1,6 @@
 import React from "react";
 import Icon from "@/components/Icons";
-import { Layout, Row, Col, Space } from "antd";
+import { Layout, Row, Col, Space, Button } from "antd";
 import LayoutBreadcrumb from "./Breadcrumb";
 import PersonalCenter from "./PersonalCenter";
 import LocalSettingsHeaderButton from "./LocalSettings";
@@ -8,9 +8,9 @@ import { FullScreenHeaderButton } from "./FullScreen";
 import NoticeHeaderButton from "./NoticeIcon";
 import HeaderButton from "./HeaderButton";
 import useLayoutConfig from "@/store/useLayoutConfig";
-const { Header } = Layout;
 
-export default function LayoutHeader() {
+const LayoutHeader: React.FC = () => {
+    const { Header } = Layout;
     const { collapsed, isDarkMode, setCollapsed } = useLayoutConfig(
         (state: any) => ({
             collapsed: state.layoutConfig.collapsed,
@@ -52,4 +52,6 @@ export default function LayoutHeader() {
             </Row>
         </Header>
     );
-}
+};
+
+export default LayoutHeader;
