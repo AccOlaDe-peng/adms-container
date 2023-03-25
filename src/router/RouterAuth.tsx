@@ -16,7 +16,7 @@ const RouterAuth = ({ children }: { children: JSX.Element }) => {
 		refreshDeps: [location],
 	});
 
-	console.log(loading, tokenIsValid);
+	console.log(loading, tokenIsValid, location);
 
 	if (loading) {
 		return <RouteAuthLoading />;

@@ -9,19 +9,17 @@ import RouterAuth from "./RouterAuth";
  * @returns
  */
 export const getLayoutRoutes = (routes: IRoute[]) => {
-    const layoutRoutes: IRoute[] = [];
-    routes.forEach((route) => {
-        const _route = { ...route };
-        if (_route.layoutRender !== false) {
-            if (_route.children) {
-                _route.children = getLayoutRoutes(
-                    _route.children
-                ) as MenuRoute[];
-            }
-            layoutRoutes.push(_route);
-        }
-    });
-    return layoutRoutes;
+	const layoutRoutes: IRoute[] = [];
+	routes.forEach((route) => {
+		const _route = { ...route };
+		if (_route.layoutRender !== false) {
+			if (_route.children) {
+				_route.children = getLayoutRoutes(_route.children) as MenuRoute[];
+			}
+			layoutRoutes.push(_route);
+		}
+	});
+	return layoutRoutes;
 };
 
 /**
@@ -30,17 +28,17 @@ export const getLayoutRoutes = (routes: IRoute[]) => {
  * @returns
  */
 export const getNoLayoutRoutes = function (routes: IRoute[]) {
-    const noLayoutRoutes: IRoute[] = [];
-    routes.forEach((route) => {
-        const _route = { ...route };
-        if (_route.children) {
-            _route.children = getNoLayoutRoutes(_route.children) as MenuRoute[];
-        }
-        if (_route.layoutRender === false || (_route.children || []).length) {
-            noLayoutRoutes.push(_route);
-        }
-    });
-    return noLayoutRoutes;
+	const noLayoutRoutes: IRoute[] = [];
+	routes.forEach((route) => {
+		const _route = { ...route };
+		if (_route.children) {
+			_route.children = getNoLayoutRoutes(_route.children) as MenuRoute[];
+		}
+		if (_route.layoutRender === false || (_route.children || []).length) {
+			noLayoutRoutes.push(_route);
+		}
+	});
+	return noLayoutRoutes;
 };
 
 /**
@@ -48,27 +46,26 @@ export const getNoLayoutRoutes = function (routes: IRoute[]) {
  * @param {Array<IRoute>} routes
  * @returns
  */
-export const generateRoutes = function (routes: IRoute[]) {
-    return routes.map((route) => {
-        let routeItem: RouteObject = {
-            path: route.path,
-        };
-        if (route.componentPath) {
-            const PageComponent = lazy(
-                () =>
-                    import(/* @vite-ignore */ `../pages/${route.componentPath}`)
-            );
-            routeItem.element = route.auth ? (
-                <RouterAuth>
-                    <PageComponent />
-                </RouterAuth>
-            ) : (
-                <PageComponent />
-            );
-        }
-        if (route.children) {
-            routeItem.children = generateRoutes(route.children);
-        }
-        return routeItem;
-    });
+export const generateRoutes = (routes: IRoute[]) => {
+	return routes.map((route) => {
+		let routeItem: RouteObject = {
+			path: route.path,
+		};
+		if (route.componentPath) {
+			const PageComponent = lazy(
+				() => import(/* @vite-ignore */ `../pages/${route.componentPath}`)
+			);
+			routeItem.element = route.auth ? (
+				<RouterAuth>
+					<PageComponent />
+				</RouterAuth>
+			) : (
+				<PageComponent />
+			);
+		}
+		if (route.children) {
+			routeItem.children = generateRoutes(route.children);
+		}
+		return routeItem;
+	});
 };

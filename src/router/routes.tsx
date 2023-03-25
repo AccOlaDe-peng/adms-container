@@ -1,46 +1,43 @@
 import { lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import {
-    generateRoutes,
-    getLayoutRoutes,
-    getNoLayoutRoutes,
+	generateRoutes,
+	getLayoutRoutes,
+	getNoLayoutRoutes,
 } from "./router.helper";
 import type { IconType } from "@/components/Icons";
 import config from "@/config";
 import type { MergeExclusive, SetOptional } from "type-fest";
 
 type CustomRoute = Omit<BaseMenuItem, "key" | "name" | "icon"> & {
-    layoutRender?: false;
+	layoutRender?: false;
 };
 
 interface BaseMenuItem {
-    // 菜单key 同时也是菜单path
-    key: string;
-    // 菜单名称 同时也是面包屑名称
-    name: string;
-    icon?: IconType;
-    auth?: true;
-    path: string;
-    // 页面组件地址，基于pages文件夹下
-    componentPath: string;
+	// 菜单key 同时也是菜单path
+	key: string;
+	// 菜单名称 同时也是面包屑名称
+	name: string;
+	icon?: IconType;
+	auth?: true;
+	path: string;
+	// 页面组件地址，基于pages文件夹下
+	componentPath: string;
 }
 
 interface NoStateMenuItem extends BaseMenuItem {
-    menuRender: false;
-    // 当打开一个非菜单页面（也就是页面的menuRender为false）想让菜单的某一项高亮，那么把此属性设为高亮菜单页面的key。
-    parentKey?: string;
+	menuRender: false;
+	// 当打开一个非菜单页面（也就是页面的menuRender为false）想让菜单的某一项高亮，那么把此属性设为高亮菜单页面的key。
+	parentKey?: string;
 }
 
 type MenuItemRoute = MergeExclusive<BaseMenuItem, NoStateMenuItem>;
 
 type MenuFoldRoute = SetOptional<
-    Omit<
-        MenuItemRoute,
-        "componentPath" | "layoutRender" | "parentKey" | "auth"
-    >,
-    "path"
+	Omit<MenuItemRoute, "componentPath" | "layoutRender" | "parentKey" | "auth">,
+	"path"
 > & {
-    children: Array<MergeExclusive<MenuItemRoute, MenuFoldRoute>>;
+	children: Array<MergeExclusive<MenuItemRoute, MenuFoldRoute>>;
 };
 
 export type MenuRoute = MergeExclusive<MenuItemRoute, MenuFoldRoute>;
@@ -54,24 +51,25 @@ const NotFound = lazy(() => import("@/pages/404"));
 export const layoutRoutesConfig = getLayoutRoutes(config.routes);
 
 const noLayoutRoutesConfig = getNoLayoutRoutes(config.routes);
+console.log(generateRoutes(layoutRoutesConfig));
 
 export default createBrowserRouter(
-    [
-        {
-            errorElement: <ErrorPage />,
-            element: <Layout />,
-            children: generateRoutes(layoutRoutesConfig),
-        },
-        {
-            errorElement: <ErrorPage />,
-            children: generateRoutes(noLayoutRoutesConfig),
-        },
-        {
-            path: "*",
-            element: <NotFound />,
-        },
-    ],
-    {
-        basename: import.meta.env.BASE_URL,
-    }
+	[
+		{
+			errorElement: <ErrorPage />,
+			element: <Layout />,
+			children: generateRoutes(layoutRoutesConfig),
+		},
+		{
+			errorElement: <ErrorPage />,
+			children: generateRoutes(noLayoutRoutesConfig),
+		},
+		{
+			path: "*",
+			element: <NotFound />,
+		},
+	],
+	{
+		basename: import.meta.env.BASE_URL,
+	}
 );
