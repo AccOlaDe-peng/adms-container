@@ -17,28 +17,28 @@ const routes: IRoute[] = [
         key: "/",
         icon: "DashboardOutlined",
     },
-    // {
-    //     path: "form",
-    //     name: "表单页",
-    //     key: "form",
-    //     icon: "FormOutlined",
-    //     children: [
-    //         {
-    //             auth: true,
-    //             path: "basic-form",
-    //             componentPath: "form/basic-form",
-    //             name: "基础表单",
-    //             key: "form/basic-form",
-    //         },
-    //         {
-    //             auth: true,
-    //             path: "step-form",
-    //             componentPath: "form/step-form",
-    //             name: "分布表单",
-    //             key: "form/step-form",
-    //         },
-    //     ],
-    // },
+    {
+        path: "form",
+        name: "表单页",
+        key: "form",
+        icon: "FormOutlined",
+        children: [
+            {
+                auth: true,
+                path: "basic-form",
+                componentPath: "form/basic-form",
+                name: "基础表单",
+                key: "form/basic-form",
+            },
+            {
+                auth: true,
+                path: "step-form",
+                componentPath: "form/step-form",
+                name: "分布表单",
+                key: "form/step-form",
+            },
+        ],
+    },
     // {
     //     path: "list",
     //     name: "列表页",

@@ -1,7 +1,7 @@
 import { Button } from "antd";
 import type { ButtonProps } from "antd";
 
-const HeaderButton: React.FC = ({ children, ...btnProps }: ButtonProps) => {
+const HeaderButton: React.FC<ButtonProps> = ({ children, ...btnProps }) => {
     return (
         <Button
             shape="circle"

@@ -1,7 +1,7 @@
 import { Button, Result, Row, Col } from "antd";
 import { useNavigate } from "react-router-dom";
 
-export default function NoFound() {
+const NoFound = () => {
     const navigate = useNavigate();
     return (
         <div
@@ -44,4 +44,6 @@ export default function NoFound() {
             />
         </div>
     );
-}
+};
+
+export default NoFound;
